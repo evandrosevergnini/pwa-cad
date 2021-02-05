@@ -1,0 +1,16 @@
+{
+  "name": "pwa-cad",
+  "version": "0.1.0",
+  "description": "PWA CAD",
+  "main": "main.js",
+  "scripts": {
+    "serve": "http-server ./src/"
+  },
+  "author": "Evandro C. Severgnini",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {},
+  "devDependencies": {
+    "http-server": "^0.12.3"
+  }
+}
