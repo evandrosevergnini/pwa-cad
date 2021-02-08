@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Posts :: PWA</title>
+    <link rel="stylesheet" href="/assets/styles/main.css" />
+    <link
+      rel="apple-touch-icon"
+      sizes="57x57"
+      href="/assets/icons/apple-icon-57x57.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="60x60"
+      href="/assets/icons/apple-icon-60x60.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="72x72"
+      href="/assets/icons/apple-icon-72x72.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="76x76"
+      href="/assets/icons/apple-icon-76x76.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="114x114"
+      href="/assets/icons/apple-icon-114x114.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="120x120"
+      href="/assets/icons/apple-icon-120x120.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="144x144"
+      href="/assets/icons/apple-icon-144x144.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="/assets/icons/apple-icon-152x152.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/assets/icons/apple-icon-180x180.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/assets/icons/android-icon-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/assets/icons/favicon-16x16.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/assets/icons/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="/assets/icons/favicon-96x96.png"
+    />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="msapplication-TileColor" content="#093655" />
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
+    <meta name="theme-color" content="#093655" />
+  </head>
+  <body>
+    <header>
+      <h1
+        style="
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          column-gap: 1rem;
+        "
+      >
+        <img
+          src="/assets/svg/logo.svg"
+          alt=""
+          role="presentation"
+          style="max-width: 100px"
+        />Wello PWA!
+      </h1>
+      <button onclick="ofereceInstalacaoComoPWA(event)">Login</button>
+    </header>
+    <main id="posts" class="posts"></main>
+    <div class="network">
+      Parece que o acesso à internet não está disponível!
+    </div>
+    <script>
+      const network = document.querySelector(".network");
+      document.addEventListener("DOMContentLoaded", function () {
+        setInterval(() => {
+          if (navigator.onLine) {
+            network.style.display = "none";
+            return;
+          }
+          network.style.display = "block";
+        }, 1000);
+      });
+    </script>
+    <script src="/main.js"></script>
+    <script>
+      window.addEventListener("load", () => {
+        fetch(
+          "https://jsonplaceholder.typicode.com/users"
+        ).then((response) => {});
+      });
+      const DB_VERSION = 1;
+      const createDB = () => {
+        return new Promise((resolve, reject) => {
+          const request = indexedDB.open("pwa-app", DB_VERSION);
+          request.onupgradeneeded = (event) => {
+            const db = event.target.result;
+            let objectStore = db.createObjectStore("posts", {
+              keyPath: "id",
+              autoIncrement: false,
+            });
+            objectStore.createIndex("title", "title", { unique: false });
+            resolve();
+          };
+          request.onerror = (error) => {
+            console.error("Erro ao tentar criar Database!", error);
+            reject();
+          };
+        });
+      };
+
+      const salvaPostsNoDB = (response) => {
+        response.json().then((posts) => {
+          const request = indexedDB.open("pwa-app", DB_VERSION);
+          request.onsuccess = (event) => {
+            const db = event.target.result;
+            const transaction = db.transaction(["posts"], "readwrite");
+            const objectStore = transaction.objectStore("posts");
+            posts.forEach((post) => {
+              const request = objectStore.add(post);
+            });
+            transaction.oncomplete = () => {
+              console.log("Transação completada");
+            };
+            transaction.onerror = (error) => {
+              console.error("Erro na transação!", error);
+            };
+          };
+        });
+      };
+      const listaPostsDoDB = () => {
+        const request = indexedDB.open("pwa-app", 1);
+        request.onsuccess = (event) => {
+          const db = event.target.result;
+          const transaction = db.transaction(["posts"], "readwrite");
+          const objectStore = transaction.objectStore("posts");
+          objectStore.openCursor().onsuccess = (event) => {
+            let cursor = event.target.result;
+            let posts = [];
+            if (cursor) {
+              posts.push(cursor.value);
+              cursor.continue();
+            }
+            const postsEl = document.getElementById("posts");
+            const ulEl = document.createElement("ul");
+            posts.forEach((post) => {
+              const liEl = document.createElement("li");
+              liEl.textContent = post.title;
+              ulEl.appendChild(liEl);
+            });
+            postsEl.appendChild(ulEl);
+          };
+        };
+      };
+    </script>
+  </body>
+</html>

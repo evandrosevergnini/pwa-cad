@@ -4,12 +4,71 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PWA CAD</title>
+
+    <!-- Estilos do Projeto -->
     <link rel="stylesheet" href="/assets/styles/main.css" />
-    link rel="stylesheet" href="/assets/styles/main.css" />
+
+    <!-- WEB MANIFEST-->
     <link rel="manifest" href="/manifest.json" />
-    <meta name="msapplication-TileColor" content="#093655" />
-    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
-    <meta name="theme-color" content="#093655" />
+
+    <!-- FAVICONS -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/assets/icons/favicon-16x16.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/assets/icons/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="/assets/icons/favicon-96x96.png"
+    />
+
+    <!-- Chrome para Android e Samsung internet browsers: color para barra de status e de navegação -->
+    <meta name="theme-color" content="#87cefa" />
+
+    <!-- 
+      O nome do aplicativo em execução na página da web.
+      Nota:
+      Os navegadores podem usar isso para identificar o aplicativo. 
+      É diferente do <title>elemento, que geralmente contém o nome do aplicativo, mas também pode conter informações como o nome do documento ou um status.
+      Páginas da web simples não devem definir um nome de aplicativo. 
+    -->
+    <meta name="application-name" content="PWA CAD" />
+
+    <!-- Para instalação no Windows -->
+    <meta name="msapplication-TileColor" content="#87cefa" />
+    <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-70x70.png"/>
+    <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-128x128.png"/>
+    <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png"/>
+    <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-150x150.png"/>
+    <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-270x270.png"/>
+    <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-310x150.png"/>
+    <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-310x310.png"/>
+    <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-558x270.png"/>
+    <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-558x529.png"/>
+
+    <!-- Habilita modo fullscreen no Safari iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+    <!--
+    Esta metatag não tem efeito a menos que você primeiro especifique o modo de tela inteira conforme descrito em apple- apple-mobile-web-app-capable.
+    Se content estiver definido como default, a barra de status aparecerá normal. 
+    Se definido como black, a barra de status tem um fundo preto. 
+    Se definido como black-translucent, a barra de status é preta e translúcida. 
+    Se definido como defaultou black, o conteúdo da web é exibido abaixo da barra de status. 
+    Se definido como black-translucent, o conteúdo da web é exibido em toda a tela, parcialmente obscurecido pela barra de status. 
+    O valor padrão é default. -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <!-- Icones para a Home Screen do iOS -->
     <link
       rel="apple-touch-icon"
       sizes="57x57"
@@ -56,28 +115,141 @@
       href="/assets/icons/apple-icon-180x180.png"
     />
     <link
-      rel="icon"
-      type="image/png"
-      sizes="192x192"
-      href="/assets/icons/android-icon-192x192.png"
+      rel="apple-touch-icon"
+      sizes="196x196"
+      href="/assets/icons/apple-icon-196x196.png"
+    />
+
+    <!-- Splash Screens para iOS -->
+    <link
+      rel="apple-touch-startup-image"
+      href="assets/splash-screen/apple-splash-2048-2732.jpg"
+      media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"
     />
     <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="/assets/icons/favicon-16x16.png"
+      rel="apple-touch-startup-image"
+      href="assets/splash-screen/apple-splash-2732-2048.jpg"
+      media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"
     />
     <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="/assets/icons/favicon-32x32.png"
+      rel="apple-touch-startup-image"
+      href="assets/splash-screen/apple-splash-1668-2388.jpg"
+      media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"
     />
     <link
-      rel="icon"
-      type="image/png"
-      sizes="96x96"
-      href="/assets/icons/favicon-96x96.png"
+      rel="apple-touch-startup-image"
+      href="assets/splash-screen/apple-splash-2388-1668.jpg"
+      media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="assets/splash-screen/apple-splash-1536-2048.jpg"
+      media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="assets/splash-screen/apple-splash-2048-1536.jpg"
+      media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="assets/splash-screen/apple-splash-1668-2224.jpg"
+      media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="assets/splash-screen/apple-splash-2224-1668.jpg"
+      media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="assets/splash-screen/apple-splash-1620-2160.jpg"
+      media="(device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="assets/splash-screen/apple-splash-2160-1620.jpg"
+      media="(device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="assets/splash-screen/apple-splash-1284-2778.jpg"
+      media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="assets/splash-screen/apple-splash-2778-1284.jpg"
+      media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="assets/splash-screen/apple-splash-1170-2532.jpg"
+      media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="assets/splash-screen/apple-splash-2532-1170.jpg"
+      media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="assets/splash-screen/apple-splash-1125-2436.jpg"
+      media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="assets/splash-screen/apple-splash-2436-1125.jpg"
+      media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="assets/splash-screen/apple-splash-1242-2688.jpg"
+      media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="assets/splash-screen/apple-splash-2688-1242.jpg"
+      media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="assets/splash-screen/apple-splash-828-1792.jpg"
+      media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="assets/splash-screen/apple-splash-1792-828.jpg"
+      media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="assets/splash-screen/apple-splash-1242-2208.jpg"
+      media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="assets/splash-screen/apple-splash-2208-1242.jpg"
+      media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="assets/splash-screen/apple-splash-750-1334.jpg"
+      media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="assets/splash-screen/apple-splash-1334-750.jpg"
+      media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="assets/splash-screen/apple-splash-640-1136.jpg"
+      media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="assets/splash-screen/apple-splash-1136-640.jpg"
+      media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"
     />
   </head>
   <body>
@@ -85,11 +257,58 @@
       <h1>
         <img
           src="/assets/svg/logo.svg"
+          alt=""
           role="presentation"
-        />Hello PWA!
+          style="width: 100px"
+        />Wello PWA!
       </h1>
-
+      <button class="btn" onclick="ofereceInstalacaoComoPWA(event)">
+        Instalar App!
+      </button>
     </header>
+    <main id="users" class="users"></main>
+    <div class="network">
+      Parece que o acesso à internet não está disponível!
+    </div>
+    <script>
+      const network = document.querySelector(".network");
+      document.addEventListener("DOMContentLoaded", function () {
+        setInterval(() => {
+          if (navigator.onLine) {
+            network.style.display = "none";
+            return;
+          }
+          network.style.display = "block";
+        }, 1000);
+      });
+    </script>
     <script src="/main.js"></script>
+    <script>
+      window.addEventListener("load", () => {
+        fetch("https://jsonplaceholder.typicode.com/users")
+          .then((response) => response.json())
+          .then((users) => listaUsersNaView(users))
+          .catch((error) =>
+            console.log("Não foi possível carregar os usuários.", error)
+          );
+      });
+      function listaUsersNaView(users) {
+        const usersEl = document.getElementById("users");
+        const ulEl = document.createElement("ul");
+        users.forEach((user) => {
+          const liEl = document.createElement("li");
+          liEl.innerHTML = `
+            <span>Usuário: ${user.name}</span>
+            <span>
+              Username: ${user.username}<br>
+              Email: ${user.email})<br>
+              website: ${user.website}
+            </span>
+            `;
+          ulEl.appendChild(liEl);
+        });
+        usersEl.appendChild(ulEl);
+      }
+    </script>
   </body>
 </html>
